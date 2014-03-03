@@ -2,7 +2,7 @@
 I made this for my study.
 
 ## How to start server
-    ./chatServer 
+    $ chatServer 
 
 ## How to connect
     $ telnet localhost 8800
@@ -26,7 +26,7 @@ Send direct message to user. message must be double quoted.
 学習用に作ったチャットサーバです。
 
 ## サーバ起動
-    ./chatServer 
+    $ chatServer 
 
 ## サーバへの接続
     $ telnet localhost 8800
