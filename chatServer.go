@@ -4,10 +4,12 @@ package main
 import (
 	"bufio"
 	"errors"
+	"flag"
 	"fmt"
 	"log"
 	"net"
 	"os"
+	"path/filepath"
 	"strings"
 	"unicode/utf8"
 )
@@ -326,14 +328,19 @@ func toFunc(commandName string) (Command, error) {
 }
 
 func main() {
-	logfile, err := os.OpenFile("/tmp/tcpserver.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+	l := flag.String("l", filepath.Join(os.Getenv("HOME"), "tcpserver.log"), "Log file path.")
+	h := flag.String("h", "", "Listen IP")
+	p := flag.Int("p", 8800, "Listen port")
+	flag.Parse()
+
+	logfile, err := os.OpenFile(*l, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer logfile.Close()
 	log.SetOutput(logfile)
 
-	listener, err := net.Listen("tcp", ":8800")
+	listener, err := net.Listen("tcp", fmt.Sprintf("%s:%d", *h, *p))
 	if err != nil {
 		log.Fatal(err)
 	}

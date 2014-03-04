@@ -1,8 +1,12 @@
 # Chat Server Sample
 I made this for my study.
 
-## How to start server
-    $ chatServer 
+## Usage
+```bash
+    -h="": Listen IP
+    -l="/home/marcie/tcpserver.log": Log file path.
+    -p=8800: Listen port
+```
 
 ## How to connect
     $ telnet localhost 8800
@@ -25,8 +29,12 @@ Send direct message to user. message must be double quoted.
 # Chat Server Sample （日本語）
 学習用に作ったチャットサーバです。
 
-## サーバ起動
-    $ chatServer 
+## 使い方
+```bash
+    -h="": Listen IP
+    -l="/home/marcie/tcpserver.log": Log file path.
+    -p=8800: Listen port
+```
 
 ## サーバへの接続
     $ telnet localhost 8800
