@@ -25,6 +25,9 @@ Kick out user from server.
     .dm username [username] message
 Send direct message to user. message must be double quoted.
 
+    .list
+List members in same chatroom.
+
 
 # Chat Server Sample （日本語）
 学習用に作ったチャットサーバです。
@@ -52,3 +55,6 @@ Send direct message to user. message must be double quoted.
 
     .dm username [username]... message
 指定したユーザにダイレクトメッセージを送ります。メッセージはダブルクォートで括らないとならないかもしれません。
+
+    .list
+同じ部屋にいる人を列挙します。

@@ -310,6 +310,14 @@ func DM(client *Client, args ...string) {
 	}
 }
 
+func ListMembers(client *Client, args ...string) {
+	for _, c := range client.room.clients {
+		client.out <- c.name
+		client.out <- "\n"
+	}
+	client.out <- "\n"
+}
+
 // return a command func for commandName.
 // If no command was found, return error.
 func toFunc(commandName string) (Command, error) {
@@ -322,6 +330,8 @@ func toFunc(commandName string) (Command, error) {
 		return KickOut, nil
 	case ".dm":
 		return DM, nil
+	case ".list":
+		return ListMembers, nil
 	case ".msg":
 		return Message, nil
 	}
