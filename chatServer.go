@@ -9,7 +9,6 @@ import (
 	"log"
 	"net"
 	"os"
-	"path/filepath"
 	"strings"
 	"unicode/utf8"
 )
@@ -338,17 +337,19 @@ func toFunc(commandName string) (Command, error) {
 }
 
 func main() {
-	l := flag.String("l", filepath.Join(os.Getenv("HOME"), "tcpserver.log"), "Log file path.")
+	l := flag.String("l", "", "Log file path. If No path, logger writes to standard input/error.")
 	h := flag.String("h", "", "Listen IP")
 	p := flag.Int("p", 8800, "Listen port")
 	flag.Parse()
 
-	logfile, err := os.OpenFile(*l, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
-	if err != nil {
-		log.Fatal(err)
+	if *l != "" {
+		logfile, err := os.OpenFile(*l, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer logfile.Close()
+		log.SetOutput(logfile)
 	}
-	defer logfile.Close()
-	log.SetOutput(logfile)
 
 	listener, err := net.Listen("tcp", fmt.Sprintf("%s:%d", *h, *p))
 	if err != nil {

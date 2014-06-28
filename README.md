@@ -4,7 +4,7 @@ I made this for my study.
 ## Usage
 ```bash
     -h="": Listen IP
-    -l="/home/marcie/tcpserver.log": Log file path.
+    -l="": Log file path. If No path, logger writes to standard input/error.
     -p=8800: Listen port
 ```
 
@@ -35,7 +35,7 @@ List members in same chatroom.
 ## 使い方
 ```bash
     -h="": Listen IP
-    -l="/home/marcie/tcpserver.log": Log file path.
+    -l="": Log file path. If No path, logger writes to standard input/error.
     -p=8800: Listen port
 ```
 
